@@ -1,18 +1,22 @@
-import { test, expect } from "@playwright/test";
-import { writeXl } from "../Utils/ExcelUtils";
+import { test } from "@playwright/test";
+import { UploadDownloadPage } from "../Pages/UploadDownloadPage";
+import { PomManager } from "../Pages/PomManager";
 
 test("File Upload And Download", async ({ page }) => {
-  let valtochange = "150720";
-  let filepath = "C:\\Users\\asuso\\Downloads\\download.xlsx";
-  const valueupdateof = "Mango";
-  await page.goto(
-    "https://rahulshettyacademy.com/upload-download-test/index.html",
-  );
-  await page.getByRole("button", { name: "Download" }).click();
-  await writeXl(filepath, valtochange, valueupdateof);
+  const pomanager = new PomManager(page);
+  const uploadPage = pomanager.get_UploadDownloadPage();
 
-  await page.locator("#fileinput").setInputFiles(filepath);
-  await expect(
-    page.locator("//div[@id='row-0']/div[@data-column-id='4']/div"),
-  ).toHaveText(valtochange);
+  const valueToChange = "150720";
+  const filepath = "C:\\Users\\asuso\\Downloads\\download.xlsx";
+  const valueUpdateOf = "Mango";
+
+  await uploadPage.goto();
+
+  await uploadPage.downloadExcel();
+
+  await uploadPage.updateExcel(filepath, valueToChange, valueUpdateOf);
+
+  await uploadPage.uploadExcel(filepath);
+
+  await uploadPage.verifyUpdatedValue(valueToChange);
 });
