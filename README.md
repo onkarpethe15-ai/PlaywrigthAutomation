@@ -16,6 +16,8 @@ Automation framework built using Playwright and JavaScript following the Page Ob
 - Parallel Execution Support
 - Azure Playwright Cloud Execution
 - GitHub Actions CI/CD Integration
+- Pull Request Validation Pipeline
+- Merge Restriction on Failed CI Jobs
 - HTML Reporting
 - Allure Reporting
 - Retry Mechanism
@@ -40,14 +42,65 @@ Automation framework built using Playwright and JavaScript following the Page Ob
 # Project Structure
 
 ```bash
-Pages/
-Tests/
-Utils/
-TestData/
-.github/
-└── workflows/
-    └── playwright.yml
+PlaywrightAutomation/
+│
+├── .github/
+│   └── workflows/
+│       └── playwright.yml
+│
+├── CustomFixture/
+│   └── Custom Playwright fixtures and reusable test setup
+│
+├── Data/
+│   └── Test data files and JSON datasets
+│
+├── Pages/
+│   └── Page Object Model (POM) classes
+│
+├── TS/
+│   └── TypeScript based page and test implementations
+│
+├── Utils/
+│   └── Utility classes, Excel helpers and reusable methods
+│
+├── tests/
+│   └── Test specifications and execution files
+│
+├── allure-report/
+│   └── Generated Allure HTML reports
+│
+├── allure-results/
+│   └── Raw Allure execution results
+│
+├── .gitignore
+├── README.md
+├── crossbrowser.config.js
+├── package.json
+├── package-lock.json
+├── playwright.config.js
+└── playwright.service.config.js
 ```
+
+---
+
+# Folder Description
+
+| Folder/File                    | Description                                   |
+| ------------------------------ | --------------------------------------------- |
+| `Pages/`                       | Contains Page Object Model classes            |
+| `tests/`                       | Contains Playwright test files                |
+| `Utils/`                       | Utility methods, helpers and Excel handling   |
+| `Data/`                        | Externalized JSON and test datasets           |
+| `CustomFixture/`               | Custom Playwright fixtures and reusable setup |
+| `TS/`                          | TypeScript implementation files               |
+| `allure-report/`               | Generated Allure HTML reports                 |
+| `allure-results/`              | Raw execution data for Allure                 |
+| `.github/workflows/`           | GitHub Actions CI/CD workflow files           |
+| `playwright.config.js`         | Main Playwright configuration                 |
+| `playwright.service.config.js` | Azure Playwright Workspaces configuration     |
+| `crossbrowser.config.js`       | Cross browser execution configuration         |
+| `package.json`                 | Project dependencies and scripts              |
+| `README.md`                    | Project documentation                         |
 
 ---
 
@@ -137,7 +190,7 @@ Framework supports Cross Browser Testing using Playwright Projects configuration
 
 ## Browser Configuration
 
-Configured inside `playwright.config.js`
+Configured inside `crossbrowser.config.js`
 
 ```js
 projects: [
@@ -156,19 +209,19 @@ projects: [
 ## Run Tests on All Browsers
 
 ```bash
-npx playwright test
+npx playwright test -c crossbrowser.config.js
 ```
 
 ## Run Tests Only on Chromium
 
 ```bash
-npx playwright test --project=chromium
+npx playwright test -c crossbrowser.config.js --project=chromium
 ```
 
 ## Run Tests Only on Safari
 
 ```bash
-npx playwright test --project=Safari
+npx playwright test -c crossbrowser.config.js --project=Safari
 ```
 
 ---
@@ -440,6 +493,29 @@ Workflow Location:
 - Remote Azure Playwright Execution
 - Artifact Upload
 - HTML Report Upload
+- Pull Request Quality Gate Validation
+- Merge Restriction on Failed CI Pipeline
+
+---
+
+# Branch Protection Strategy
+
+Branch protection rules are configured to ensure code quality.
+
+## Configured Rules
+
+- Pull Request Validation Required
+- CI Pipeline Must Pass Before Merge
+- Merge Button Disabled on Failed Jobs
+- Prevent Direct Push to Main Branch
+- Mandatory Status Checks Before Merge
+
+This helps maintain:
+
+- Stable main branch
+- Better code quality
+- Controlled deployments
+- Safer collaboration workflow
 
 ---
 
@@ -501,6 +577,7 @@ HTML Report Upload
 - Cross Browser Testing
 - Azure Cloud Execution
 - GitHub Actions CI/CD
+- Pull Request Validation Pipeline
 
 ---
 
@@ -510,6 +587,12 @@ HTML Report Upload
 - AI Powered Self-Healing Framework Capabilities
 - Framework Migration from JavaScript to TypeScript
 - Advanced Reporting Dashboard
+- API Testing Integration
+- Docker Integration
+- Jenkins Integration
+- Database Validation
+- Visual Regression Testing
+- Slack Notifications
 
 ---
 
