@@ -1,9 +1,17 @@
-import { expect } from "@playwright/test";
+import { expect, Locator, Page } from "@playwright/test";
+
 import { writeXl } from "../Utils/ExcelUtils";
 
 class UploadDownloadPage {
-  constructor(page) {
+  page: Page;
+
+  downloadBtn: Locator;
+  fileInput: Locator;
+  updatedCell: Locator;
+
+  constructor(page: Page) {
     this.page = page;
+
     this.downloadBtn = page.getByRole("button", {
       name: "Download",
     });
@@ -15,26 +23,31 @@ class UploadDownloadPage {
     );
   }
 
-  async goto() {
+  async goto(): Promise<void> {
     await this.page.goto(
       "https://rahulshettyacademy.com/upload-download-test/index.html",
     );
   }
 
-  async downloadExcel() {
+  async downloadExcel(): Promise<void> {
     await this.downloadBtn.click();
   }
 
-  async updateExcel(filepath, valueToChange, valueUpdateOf) {
+  async updateExcel(
+    filepath: string,
+    valueToChange: string,
+    valueUpdateOf: string,
+  ): Promise<void> {
     await writeXl(filepath, valueToChange, valueUpdateOf);
   }
 
-  async uploadExcel(filepath) {
+  async uploadExcel(filepath: string): Promise<void> {
     await this.fileInput.setInputFiles(filepath);
   }
 
-  async verifyUpdatedValue(expectedValue) {
+  async verifyUpdatedValue(expectedValue: string): Promise<void> {
     await expect(this.updatedCell).toHaveText(expectedValue);
   }
 }
+
 export { UploadDownloadPage };

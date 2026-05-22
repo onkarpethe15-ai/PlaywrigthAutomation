@@ -1,19 +1,26 @@
+import { Page } from "@playwright/test";
+
 import { EcomPage } from "./EcomPage";
 import { UploadDownloadPage } from "./UploadDownloadPage";
 
 class PomManager {
-  constructor(page) {
+  page: Page;
+
+  constructor(page: Page) {
     this.page = page;
   }
 
-  get_EcomPage() {
+  get_EcomPage(): EcomPage {
     const obj_EcomPage = new EcomPage(this.page);
+
     return obj_EcomPage;
   }
 
-  get_UploadDownloadPage() {
+  get_UploadDownloadPage(): UploadDownloadPage {
     const uploadPage = new UploadDownloadPage(this.page);
+
     return uploadPage;
   }
 }
+
 export { PomManager };

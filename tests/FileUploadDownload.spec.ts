@@ -1,10 +1,10 @@
-// import { test } from "@playwright/test";
 import { test } from "../CustomFixture/DataFixtures";
 import { UploadDownloadPage } from "../Pages/UploadDownloadPage";
 import { PomManager } from "../Pages/PomManager";
 
 test("File Upload And Download", async ({ page, TestData, logger }) => {
   const pomanager = new PomManager(page);
+
   const uploadPage = pomanager.get_UploadDownloadPage();
 
   await uploadPage.goto();
@@ -20,6 +20,7 @@ test("File Upload And Download", async ({ page, TestData, logger }) => {
   logger("excel data updated");
 
   await uploadPage.uploadExcel(TestData.filepath);
+
   logger("File upload completed");
 
   await uploadPage.verifyUpdatedValue(TestData.valueToChange);
