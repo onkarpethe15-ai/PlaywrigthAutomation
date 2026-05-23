@@ -19,8 +19,9 @@ export default defineConfig({
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,
   /* Retry on CI only */
-  retries: 2,
-  workers: 4,
+  workers: process.env.CI ? 1 : 4,
+  retries: process.env.CI ? 1 : 2,
+
   // retries: process.env.CI ? 2 : 0,
   // /* Opt out of parallel tests on CI. */
   // workers: process.env.CI ? 1 : undefined,
@@ -44,7 +45,7 @@ export default defineConfig({
       name: "chromium",
       use: {
         ...devices["Desktop Chrome"],
-        headless: false,
+        headless: !!process.env.CI,
         screenshot: "only-on-failure",
         video: "retain-on-failure",
         trace: "on-first-retry",
