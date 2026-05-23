@@ -38,7 +38,7 @@ jobs:
       - name: Run Playwright Tests
         env:
           PLAYWRIGHT_SERVICE_URL: ${{ vars.PLAYWRIGHT_SERVICE_URL }}
-        run: npx playwright test -c playwright.service.config.ts --workers=4
+        run: npx playwright test -c playwright.service.config.js --workers=4
 
       - name: Upload Playwright Report
         uses: actions/upload-artifact@v4
