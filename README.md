@@ -1,6 +1,6 @@
 # Playwright Automation Framework
 
-Automation framework built using Playwright and JavaScript following the Page Object Model (POM) design pattern with support for Cross Browser Execution, Azure Playwright Workspaces and GitHub Actions CI/CD integration.
+Automation framework built using Playwright and JavaScript following the Page Object Model (POM) design pattern with support for Cross Browser Execution, Azure Playwright Workspaces, AI Agent Integration, MCP Server Integration and GitHub Actions CI/CD pipeline.
 
 ---
 
@@ -8,6 +8,11 @@ Automation framework built using Playwright and JavaScript following the Page Ob
 
 - Page Object Model (POM)
 - End-to-End UI Automation
+- API Automation Testing
+- AI Assisted Test Generation
+- AI Generated Test Planning
+- AI Powered POM Generation
+- MCP Server Integration
 - Data Driven Testing using JSON
 - Excel Read/Write Utility using ExcelJS
 - Reusable Page Manager
@@ -35,7 +40,9 @@ Automation framework built using Playwright and JavaScript following the Page Ob
 - ExcelJS
 - Azure Playwright Workspaces
 - GitHub Actions
+- MCP Server
 - Allure Reports
+- AI Automation Agents
 
 ---
 
@@ -45,26 +52,20 @@ Automation framework built using Playwright and JavaScript following the Page Ob
 PlaywrightAutomation/
 │
 ├── .github/
+│   ├── agents/
+│   │   ├── playwright-framework-generator.agent.md
+│   │   ├── playwright-test-generator.agent.md
+│   │   ├── playwright-test-healer.agent.md
+│   │   └── playwright-test-planner.agent.md
+│   │
 │   └── workflows/
 │       └── playwright.yml
 │
-├── CustomFixture/
-│   └── Custom Playwright fixtures and reusable test setup
+├── .playwright-mcp/
+│   └── MCP Server configuration and AI tooling
 │
-├── Data/
-│   └── Test data files and JSON datasets
-│
-├── Pages/
-│   └── Page Object Model (POM) classes
-│
-├── TS/
-│   └── TypeScript based page and test implementations
-│
-├── Utils/
-│   └── Utility classes, Excel helpers and reusable methods
-│
-├── tests/
-│   └── Test specifications and execution files
+├── .vscode/
+│   └── VSCode workspace settings
 │
 ├── allure-report/
 │   └── Generated Allure HTML reports
@@ -72,63 +73,64 @@ PlaywrightAutomation/
 ├── allure-results/
 │   └── Raw Allure execution results
 │
+├── fixtures/
+│   └── Custom Playwright fixtures and reusable setup
+│
+├── node_modules/
+│
+├── pages/
+│   └── Page Object Model (POM) classes
+│
+├── playwright-report/
+│   └── Generated Playwright HTML reports
+│
+├── test-data/
+│   └── Externalized JSON and test datasets
+│       └── EcomData.json
+│
+├── test-plan/
+│   └── AI generated test planning documents
+│       └── selenium-practise-test-plan.md
+│
+├── test-results/
+│   └── Screenshots, traces and videos
+│
+├── tests/
+│   ├── api/
+│   ├── ui/
+│   └── seed.spec.ts
+│
+├── utils/
+│   └── Reusable utilities and ExcelJS helpers
+│
 ├── .gitignore
-├── README.md
 ├── crossbrowser.config.js
 ├── package.json
 ├── package-lock.json
 ├── playwright.config.js
-└── playwright.service.config.js
+├── playwright.service.config.js
+└── README.md
 ```
 
 ---
 
-# Folder Description
+# Folder Significance
 
-| Folder/File                    | Description                                   |
-| ------------------------------ | --------------------------------------------- |
-| `Pages/`                       | Contains Page Object Model classes            |
-| `tests/`                       | Contains Playwright test files                |
-| `Utils/`                       | Utility methods, helpers and Excel handling   |
-| `Data/`                        | Externalized JSON and test datasets           |
-| `CustomFixture/`               | Custom Playwright fixtures and reusable setup |
-| `TS/`                          | TypeScript implementation files               |
-| `allure-report/`               | Generated Allure HTML reports                 |
-| `allure-results/`              | Raw execution data for Allure                 |
-| `.github/workflows/`           | GitHub Actions CI/CD workflow files           |
-| `playwright.config.js`         | Main Playwright configuration                 |
-| `playwright.service.config.js` | Azure Playwright Workspaces configuration     |
-| `crossbrowser.config.js`       | Cross browser execution configuration         |
-| `package.json`                 | Project dependencies and scripts              |
-| `README.md`                    | Project documentation                         |
-
----
-
-# Installation
-
-Clone the repository:
-
-```bash
-git clone <repository-url>
-```
-
-Move to project directory:
-
-```bash
-cd PlaywrightAutomation
-```
-
-Install dependencies:
-
-```bash
-npm install
-```
-
-Install Playwright browsers:
-
-```bash
-npx playwright install
-```
+| Folder/File         | Purpose                                                                                         |
+| ------------------- | ----------------------------------------------------------------------------------------------- |
+| `.github/agents`    | AI Agents used for framework generation, test generation, self-healing and intelligent planning |
+| `.github/workflows` | GitHub Actions CI/CD workflow pipelines                                                         |
+| `.playwright-mcp`   | Playwright MCP Server integration and AI tooling                                                |
+| `fixtures`          | Custom reusable Playwright fixtures                                                             |
+| `pages`             | Page Object Model (POM) classes                                                                 |
+| `tests/ui`          | UI automation test cases                                                                        |
+| `tests/api`         | API automation test cases                                                                       |
+| `utils`             | Utility helpers and Excel operations                                                            |
+| `test-data`         | JSON driven test datasets                                                                       |
+| `test-results`      | Screenshots, traces and videos                                                                  |
+| `playwright-report` | Generated Playwright HTML report                                                                |
+| `allure-report`     | Allure reporting dashboard                                                                      |
+| `test-plan`         | AI generated test planning documentation                                                        |
 
 ---
 
@@ -141,13 +143,360 @@ This framework follows the Page Object Model (POM) architecture where:
 - Utilities handle reusable functionalities
 - Test data is externalized
 - Configuration is centralized
+- AI agents assist with intelligent automation workflows
 
-Benefits:
+## Benefits
 
 - Maintainability
 - Scalability
 - Reusability
 - Readability
+- Faster Test Development
+- AI Assisted Automation
+
+---
+
+# AI Agent Integration
+
+Framework supports AI assisted automation development using custom AI agents.
+
+## Implemented AI Agents
+
+| Agent                                     | Responsibility                                       |
+| ----------------------------------------- | ---------------------------------------------------- |
+| `playwright-framework-generator.agent.md` | Generates scalable framework structure               |
+| `playwright-test-generator.agent.md`      | Generates Playwright automation scripts              |
+| `playwright-test-healer.agent.md`         | Assists with locator healing and flaky test recovery |
+| `playwright-test-planner.agent.md`        | Generates intelligent test plans from requirements   |
+
+---
+
+# Install AI & MCP Dependencies
+
+## Install Playwright Framework
+
+```bash
+npm init playwright@latest
+```
+
+---
+
+## Install Playwright Browsers
+
+```bash
+npx playwright install
+```
+
+---
+
+## Install Playwright MCP Server
+
+```bash
+npm install -D @playwright/mcp
+```
+
+---
+
+## Start MCP Server
+
+```bash
+npx @playwright/mcp@latest
+```
+
+---
+
+## Install Azure Playwright Integration
+
+```bash
+npm init @azure/playwright@latest
+```
+
+---
+
+## Install Allure Reporting
+
+```bash
+npm install -D allure-playwright
+```
+
+---
+
+## Install Allure Commandline
+
+```bash
+npm install -D allure-commandline
+```
+
+---
+
+## Install ExcelJS
+
+```bash
+npm install exceljs
+```
+
+---
+
+## Install Dotenv
+
+```bash
+npm install dotenv
+```
+
+---
+
+## Install Cross Env
+
+```bash
+npm install cross-env
+```
+
+---
+
+## Install TypeScript Support
+
+```bash
+npm install -D typescript ts-node @types/node
+```
+
+---
+
+## Install ESLint
+
+```bash
+npm install -D eslint
+```
+
+---
+
+## Install Prettier
+
+```bash
+npm install -D prettier
+```
+
+---
+
+# GitHub Copilot Setup
+
+## Install GitHub Copilot VSCode Extensions
+
+```bash
+code --install-extension GitHub.copilot
+```
+
+```bash
+code --install-extension GitHub.copilot-chat
+```
+
+---
+
+## Login To GitHub Copilot
+
+Inside VSCode:
+
+```text
+Ctrl + Shift + P
+```
+
+Search:
+
+```text
+GitHub Copilot: Sign In
+```
+
+Complete GitHub authentication flow.
+
+---
+
+## Open GitHub Copilot Chat
+
+```text
+Ctrl + Alt + I
+```
+
+---
+
+# Playwright MCP Server Integration
+
+Framework supports Playwright MCP Server integration for AI powered automation workflows.
+
+## MCP Features
+
+- DOM Understanding
+- AI Assisted Locator Generation
+- Test Healing
+- Browser Interaction Support
+- AI Assisted Debugging
+- AI Test Generation
+- Context Aware Automation
+
+---
+
+# Connect MCP Server With GitHub Copilot
+
+## Step 1
+
+Start MCP Server:
+
+```bash
+npx @playwright/mcp@latest
+```
+
+---
+
+## Step 2
+
+Open VSCode with GitHub Copilot Chat enabled.
+
+---
+
+## Step 3
+
+Allow GitHub Copilot / AI tools to access MCP context.
+
+---
+
+## Step 4
+
+Use prompts like:
+
+```text
+Generate Playwright test using MCP browser context.
+```
+
+OR
+
+```text
+Generate locator using current browser DOM.
+```
+
+---
+
+# Example AI Workflow
+
+```text
+Requirement
+     ↓
+AI Test Planner Agent
+     ↓
+Generated Test Plan
+     ↓
+AI Test Generator Agent
+     ↓
+Generated Playwright Tests
+     ↓
+AI Framework Generator
+     ↓
+Generated POM Structure
+     ↓
+Playwright Execution
+```
+
+---
+
+# Example AI Prompts
+
+## Generate Test Plan
+
+```text
+Generate detailed Playwright test plan for GreenKart application including cart, checkout, search and negative scenarios.
+```
+
+---
+
+## Generate Playwright Test
+
+```text
+Generate Playwright test using POM for GreenKart add to cart workflow.
+```
+
+---
+
+## Generate POM
+
+```text
+Generate reusable Playwright Page Object Model class for GreenKart cart page.
+```
+
+---
+
+## Heal Flaky Test
+
+```text
+Fix flaky locator issue in GreenKart checkout test.
+```
+
+---
+
+# AI Generated GreenKart Workflow
+
+## AI Generated Test Plan
+
+AI agent generates:
+
+- Cart scenarios
+- Checkout validation
+- Search validation
+- Quantity update scenarios
+- Negative test coverage
+
+Stored inside:
+
+```bash
+test-plan/
+```
+
+---
+
+## AI Generated POM Classes
+
+AI assisted Page Object generation:
+
+- Locators
+- Reusable actions
+- Assertions
+- Page methods
+
+Stored inside:
+
+```bash
+pages/
+```
+
+---
+
+# Installation
+
+## Clone Repository
+
+```bash
+git clone <repository-url>
+```
+
+---
+
+## Move To Project Directory
+
+```bash
+cd PlaywrightAutomation
+```
+
+---
+
+## Install Dependencies
+
+```bash
+npm install
+```
+
+---
+
+## Install Playwright Browsers
+
+```bash
+npx playwright install
+```
 
 ---
 
@@ -159,19 +508,25 @@ Benefits:
 npx playwright test
 ```
 
-## Run Tests in Headed Mode
+---
+
+## Run Tests In Headed Mode
 
 ```bash
 npx playwright test --headed
 ```
 
+---
+
 ## Run Specific Test File
 
 ```bash
-npx playwright test tests/example.spec.js
+npx playwright test tests/ui/greenkart/shopping-cart-functionaliy.spec.ts
 ```
 
-## Run Tests in Parallel
+---
+
+## Run Tests In Parallel
 
 ```bash
 npx playwright test --workers=4
@@ -188,37 +543,35 @@ Framework supports Cross Browser Testing using Playwright Projects configuration
 - Chromium
 - Safari
 
+---
+
 ## Browser Configuration
 
-Configured inside `crossbrowser.config.js`
+Configured inside:
 
-```js
-projects: [
-  {
-    name: "chromium",
-    use: { ...devices["Desktop Chrome"] },
-  },
-
-  {
-    name: "Safari",
-    use: { ...devices["Desktop Safari"] },
-  },
-];
+```bash
+crossbrowser.config.js
 ```
 
-## Run Tests on All Browsers
+---
+
+## Run Tests On All Browsers
 
 ```bash
 npx playwright test -c crossbrowser.config.js
 ```
 
-## Run Tests Only on Chromium
+---
+
+## Run Tests Only On Chromium
 
 ```bash
 npx playwright test -c crossbrowser.config.js --project=chromium
 ```
 
-## Run Tests Only on Safari
+---
+
+## Run Tests Only On Safari
 
 ```bash
 npx playwright test -c crossbrowser.config.js --project=Safari
@@ -262,13 +615,13 @@ npx playwright show-report
 
 Framework supports advanced reporting using Allure Reports.
 
+---
+
 ## Generate Allure Report
 
 ```bash
 npm run allure:generate
 ```
-
-This command generates the Allure HTML report from execution results.
 
 ---
 
@@ -278,8 +631,6 @@ This command generates the Allure HTML report from execution results.
 npm run allure:open
 ```
 
-This command opens the generated Allure report in browser.
-
 ---
 
 ## Execute Tests + Generate + Open Allure Report
@@ -287,12 +638,6 @@ This command opens the generated Allure report in browser.
 ```bash
 npm run allure:test
 ```
-
-This command performs:
-
-1. Playwright Test Execution
-2. Allure Report Generation
-3. Automatically Opens Allure Report
 
 ---
 
@@ -312,7 +657,7 @@ npx allure open allure-report
 
 ---
 
-## Allure Report Features
+# Allure Report Features
 
 - Test Execution Summary
 - Passed / Failed Statistics
@@ -324,30 +669,19 @@ npx allure open allure-report
 
 ---
 
-# Package Scripts
-
-```json
-"scripts": {
-  "test": "playwright test",
-  "allure:generate": "npx allure generate allure-results --clean -o allure-report",
-  "allure:open": "npx allure open allure-report",
-  "allure:test": "playwright test && npx allure generate allure-results --clean -o allure-report && npx allure open allure-report"
-}
-```
-
----
-
 # Excel Utility Support
 
 Framework supports Excel operations using ExcelJS.
 
-Features:
+## Features
 
 - Read test data from Excel
 - Write execution results
 - Dynamic test data handling
 
-Package Used:
+---
+
+## Package Used
 
 ```json
 "exceljs": "^4.4.0"
@@ -359,100 +693,50 @@ Package Used:
 
 Framework supports remote cloud execution using Azure Playwright Workspaces.
 
-## Azure Features
+---
+
+# Azure Features
 
 - Cloud Based Browser Execution
 - Parallel Remote Execution
 - Centralized Reporting
 - Video & Trace Uploads
 - Scalable Infrastructure
+- Cloud Browser Sessions
 
 ---
 
 # Azure Local Execution Setup
 
-## Install Azure Playwright Package
-
-```bash
-npm init @azure/playwright@latest
-```
-
-## Login to Azure
+## Login To Azure
 
 ```bash
 az login
 ```
 
+---
+
 ## Set Playwright Service URL
 
-PowerShell:
+### PowerShell
 
 ```powershell
 $env:PLAYWRIGHT_SERVICE_URL="wss://<region>.api.playwright.microsoft.com/playwrightworkspaces/<workspace-id>/browsers"
 ```
 
-## Execute Tests on Azure
+---
+
+## Execute Tests On Azure
 
 ```bash
-npx playwright test -c playwright.service.config.js --workers=4
+npx playwright test --config=playwright.service.config.js --workers=4
 ```
 
 ---
 
 # Azure Storage Permission Setup
 
-## Get Storage Account Resource ID
-
-```bash
-az storage account show \
-  --name "<storage-account-name>" \
-  --resource-group "<resource-group>" \
-  --query id -o tsv
-```
-
----
-
-## Assign Storage Blob Data Contributor Role to User
-
-```bash
-az role assignment create \
-  --assignee "<object-id>" \
-  --role "Storage Blob Data Contributor" \
-  --scope "$(az storage account show --name <storage-account-name> --resource-group <resource-group> --query id -o tsv)"
-```
-
-This command provides permission to upload:
-
-- traces
-- screenshots
-- videos
-- reports
-
-to Azure Storage Account.
-
----
-
-## Create Azure Service Principal for GitHub Actions
-
-```bash
-az ad sp create-for-rbac \
-  --name "<service-principal-name>" \
-  --role "Contributor" \
-  --scopes "/subscriptions/<subscription-id>/resourceGroups/<resource-group>" \
-  --json-auth
-```
-
-This command generates Azure credentials JSON used inside GitHub Actions Secrets.
-
-GitHub Secret Name:
-
-```text
-AZURE_CREDENTIALS
-```
-
----
-
-## Assign Storage Permission to GitHub Actions Service Principal
+## Assign Storage Blob Data Contributor Role
 
 ```bash
 az role assignment create \
@@ -461,23 +745,13 @@ az role assignment create \
   --scope "/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.Storage/storageAccounts/<storage-account>"
 ```
 
-This command allows GitHub Actions pipeline to upload:
-
-- Playwright Reports
-- Screenshots
-- Videos
-- Traces
-- Azure Reporting Artifacts
-
-to Azure Storage successfully.
-
 ---
 
 # GitHub Actions CI/CD Integration
 
 Framework supports automated cloud execution using GitHub Actions.
 
-Workflow Location:
+Workflow location:
 
 ```bash
 .github/workflows/playwright.yml
@@ -490,7 +764,7 @@ Workflow Location:
 - Automatic Trigger on Push
 - Pull Request Validation
 - Azure Authentication
-- Remote Azure Playwright Execution
+- Azure Playwright Workspace Execution
 - Artifact Upload
 - HTML Report Upload
 - Pull Request Quality Gate Validation
@@ -498,50 +772,25 @@ Workflow Location:
 
 ---
 
-# Branch Protection Strategy
-
-Branch protection rules are configured to ensure code quality.
-
-## Configured Rules
-
-- Pull Request Validation Required
-- CI Pipeline Must Pass Before Merge
-- Merge Button Disabled on Failed Jobs
-- Prevent Direct Push to Main Branch
-- Mandatory Status Checks Before Merge
-
-This helps maintain:
-
-- Stable main branch
-- Better code quality
-- Controlled deployments
-- Safer collaboration workflow
-
----
-
 # GitHub Secrets Configuration
 
-## Create Repository Secret
-
-Name:
+## Repository Secret
 
 ```text
 AZURE_CREDENTIALS
 ```
 
-Value:
+Contains Azure Service Principal JSON.
 
-- Azure Service Principal JSON
+---
 
-## Create Repository Variable
-
-Name:
+## Repository Variable
 
 ```text
 PLAYWRIGHT_SERVICE_URL
 ```
 
-Value:
+Contains:
 
 ```text
 wss://<region>.api.playwright.microsoft.com/playwrightworkspaces/<workspace-id>/browsers
@@ -552,17 +801,41 @@ wss://<region>.api.playwright.microsoft.com/playwrightworkspaces/<workspace-id>/
 # GitHub Actions Execution Flow
 
 ```text
-GitHub Push
+Developer Push
       ↓
 GitHub Actions Trigger
       ↓
 Azure Login
       ↓
-Playwright Remote Execution
+Azure Playwright Workspace Execution
       ↓
-Azure Reporting & Artifact Upload
+Artifact Upload
       ↓
-HTML Report Upload
+Azure Reporting
+      ↓
+Allure & HTML Reports
+```
+
+---
+
+# AI Powered Automation Workflow
+
+```text
+Requirement
+      ↓
+AI Test Planning
+      ↓
+AI Generated POM
+      ↓
+AI Generated Tests
+      ↓
+Playwright Execution
+      ↓
+Azure Cloud Execution
+      ↓
+Allure + HTML Reporting
+      ↓
+AI Based Test Healing
 ```
 
 ---
@@ -578,28 +851,11 @@ HTML Report Upload
 - Azure Cloud Execution
 - GitHub Actions CI/CD
 - Pull Request Validation Pipeline
-
----
-
-# Future Enhancements
-
-- AI Agent Integration for Intelligent Test Execution
-- AI Powered Self-Healing Framework Capabilities
-- Framework Migration from JavaScript to TypeScript
-- Advanced Reporting Dashboard
-- API Testing Integration
-- Docker Integration
-- Jenkins Integration
-- Database Validation
-- Visual Regression Testing
-- Slack Notifications
-
----
+- AI Generated Test Planning
+- AI Assisted POM Generation
 
 # Author
 
 ## Onkar Pethe
 
 Automation Test Engineer passionate about building scalable automation frameworks and cloud-based test execution pipelines using modern automation tools.
-
-test
