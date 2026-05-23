@@ -34,7 +34,7 @@ jobs:
       - name: Run Playwright tests
         env:
           PLAYWRIGHT_SERVICE_URL: ${{ vars.PLAYWRIGHT_SERVICE_URL }}
-        run: npx playwright test/ui/greenkart/shopping-cart-functionaliy.spec.ts -c playwright.service.config.js --workers=1
+        run: npx playwright tests/ui/greenkart/shopping-cart-functionaliy.spec.ts -c playwright.service.config.js --workers=1
 
       - uses: actions/upload-artifact@v4
         if: always()
