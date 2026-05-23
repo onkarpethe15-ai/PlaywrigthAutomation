@@ -1,6 +1,6 @@
 import { expect, Locator, Page } from "@playwright/test";
 
-import { writeXl } from "../Utils/ExcelUtils";
+import { writeXl } from "../../utils/ExcelUtils";
 
 class UploadDownloadPage {
   page: Page;

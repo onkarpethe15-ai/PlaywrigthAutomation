@@ -1,5 +1,5 @@
 import { test, expect } from "@playwright/test";
-import { GreenKartPage } from "../Pages/GreenKartPage";
+import { GreenKartPage } from "../../../pages/greenkart/GreenKartPage";
 
 test.describe("GreenKart Application Tests", () => {
   test("Add product to cart", async ({ page }) => {

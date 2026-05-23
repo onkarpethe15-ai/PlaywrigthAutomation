@@ -1,6 +1,6 @@
-import { test } from "../CustomFixture/DataFixtures";
-import { UploadDownloadPage } from "../Pages/UploadDownloadPage";
-import { PomManager } from "../Pages/PomManager";
+import { test } from "../../..//fixtures/DataFixtures";
+import { UploadDownloadPage } from "../../../pages/upload-download/UploadDownloadPage";
+import { PomManager } from "../../../pages/manager/PomManager";
 
 test("File Upload And Download", async ({ page, TestData, logger }) => {
   const pomanager = new PomManager(page);

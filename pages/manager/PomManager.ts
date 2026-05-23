@@ -1,7 +1,8 @@
 import { Page } from "@playwright/test";
 
-import { EcomPage } from "./EcomPage";
-import { UploadDownloadPage } from "./UploadDownloadPage";
+import { EcomPage } from "../ecommerce/EcomPage";
+
+import { UploadDownloadPage } from "../upload-download/UploadDownloadPage";
 
 class PomManager {
   page: Page;

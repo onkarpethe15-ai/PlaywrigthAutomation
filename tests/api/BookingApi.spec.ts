@@ -1,5 +1,5 @@
 import { test, expect, APIResponse } from "@playwright/test";
-import { writeXl } from "../Utils/ExcelUtils";
+import { writeXl } from "../../utils/ExcelUtils";
 
 let api_token: string;
 
@@ -11,7 +11,7 @@ test("Test Login Api", async ({ request }) => {
         email: "mailtonkar@gmail.com",
         password: "Panda@2025",
       },
-    }
+    },
   );
 
   expect(response.status()).toBe(200);
@@ -32,7 +32,7 @@ test("List events", async ({ request }) => {
       headers: {
         Authorization: `Bearer ${api_token}`,
       },
-    }
+    },
   );
 
   const body: any = await response.json();
